@@ -46,7 +46,6 @@ async function loadGoogleIdentity() {
     googleScriptPromise = new Promise<void>((resolve, reject) => {
       const script = document.createElement('script')
       script.src = 'https://accounts.google.com/gsi/client'
-      script.crossOrigin = 'anonymous'
       script.async = true
       script.defer = true
       script.onload = () => window.google?.accounts?.oauth2 ? resolve() : reject(new Error('Google Identity Services did not initialize.'))

@@ -54,11 +54,11 @@ GitHub Actions runs the same locked-dependency production build for pushes and p
 
 1. Create a Pages project from the repository.
 2. Build command: `npm run build`; build output directory: `dist`.
-3. `public/_headers` publishes COOP/COEP headers. Verify the deployed response headers before using any feature that requires `SharedArrayBuffer`.
+3. `public/_headers` publishes COOP/COEP headers. The `credentialless` COEP policy permits the Google Identity Services script while preserving cross-origin isolation in supporting browsers. Verify the deployed response headers and `crossOriginIsolated` before using features that require `SharedArrayBuffer`.
 
 No server-side environment variables are required. `.env.example` documents that AI keys are supplied in browser Settings. Static hosting and free AI/model quotas are subject to provider limits.
 
-The deployment is a static client-side app; connect the repository to your chosen host and use the build/output settings above. Add the deployed site origin to the Google OAuth web client before connecting a YouTube channel. Verify that the published site returns both COOP and COEP headers; browser FFmpeg multithreading depends on cross-origin isolation.
+The deployment is a static client-side app; connect the repository to your chosen host and use the build/output settings above. Add the deployed site origin (`https://var-studios.pages.dev`) to the Google OAuth web client before connecting a YouTube channel. Verify that the published site returns `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: credentialless`; in the browser console, `crossOriginIsolated` should be `true`. Browser FFmpeg multithreading depends on cross-origin isolation. `credentialless` also allows the Google Identity Services script to load without requiring a CORS response header.
 
 ## First use
 
