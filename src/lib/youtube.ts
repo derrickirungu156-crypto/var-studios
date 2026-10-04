@@ -72,7 +72,7 @@ export function authorizeYouTube(clientId: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const client = oauth.initTokenClient({
       client_id: clientId.trim(),
-      scope: 'https://www.googleapis.com/auth/youtube.upload',
+      scope: 'https://www.googleapis.com/auth/youtube.upload https://www.googleapis.com/auth/youtube.readonly',
       callback: response => {
         if (response.error || !response.access_token) {
           reject(new Error(response.error_description || response.error || 'YouTube authorization was not granted.'))
